@@ -37,6 +37,6 @@ No accounts. No servers. Just your notes, secured locally on your device.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/notely.git
+   git clone https://github.com/theajthakur/notely.git
    cd notely
    ```
