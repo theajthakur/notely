@@ -1,14 +1,42 @@
-# React + Vite
+# 📝 Notely
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Notely** is a minimalist React app to write your **daily diary**, manage **day-to-day tasks**, and **schedule tasks for future dates** — all while keeping your data private using **pure localStorage**.  
+No accounts. No servers. Just your notes, secured locally on your device.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Features
 
-## Expanding the ESLint configuration
+- 🖊️ **Daily Diary**  
+  Jot down your thoughts, reflections, and memories for each day.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# notely
-# notely
+- ✅ **Task Manager**  
+  Create, complete, and delete tasks for today or any chosen date.
+
+- 📅 **Future Planning**  
+  Plan ahead by scheduling tasks for upcoming days.
+
+- 📂 **Date-based Navigation**  
+  View and edit diary entries or tasks for any date.
+
+- 🔐 **100% Private**  
+  All your data is stored in your browser using **localStorage** only. No data leaves your device.
+
+---
+
+## ⚙️ Tech Stack
+
+- **Frontend:** React (Vite/CRA)
+- **Styling:** Tailwind CSS / CSS Modules
+- **Storage:** LocalStorage (no backend for total privacy)
+- **Date Handling:** date-fns or plain JS Date API
+
+---
+
+## 📦 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/notely.git
+   cd notely
+   ```
