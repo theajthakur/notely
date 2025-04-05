@@ -55,56 +55,62 @@ export default function TaskList() {
           onChange={(e) => setDate(e.target.value)}
         />
       </div>
-      <h2 className="task-list-title">Your Tasks</h2>
-      <div className="task-list">
-        {Object.entries(taskList).map(([key, value]) => (
-          <div className="date-unit mb-3" data-date={key} key={key}>
-            <h5>{key}</h5>
-            <div className="task-list-items">
-              {value.map((task) => {
-                return (
-                  <div key={task.id} className="task-item">
-                    <div className="task-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={task.completed}
-                        onChange={() => {
-                          task.completed = !task.completed;
-                          setTaskList({ ...taskList });
-                          localStorage.setItem(
-                            "notely-tasks",
-                            JSON.stringify(taskList)
-                          );
-                        }}
-                      />
-                    </div>
-                    <div className="task-name">{task.name}</div>
-                    <div className="task-actions">
-                      <a
-                        href="#"
-                        className="task-delete-button"
-                        onClick={() => {
-                          const updatedTasks = value.filter(
-                            (t) => t.id !== task.id
-                          );
-                          taskList[key] = updatedTasks;
-                          setTaskList({ ...taskList });
-                          localStorage.setItem(
-                            "notely-tasks",
-                            JSON.stringify(taskList)
-                          );
-                        }}
-                      >
-                        Delete
-                      </a>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+      {Object.entries(taskList).length == 0 ? (
+        ""
+      ) : (
+        <div className="task-date-actions mb-3">
+          <h2 className="task-list-title">Your Tasks</h2>
+          <div className="task-list">
+            {Object.entries(taskList).map(([key, value]) => (
+              <div className="date-unit mb-3" data-date={key} key={key}>
+                <h5>{key}</h5>
+                <div className="task-list-items">
+                  {value.map((task) => {
+                    return (
+                      <div key={task.id} className="task-item">
+                        <div className="task-checkbox">
+                          <input
+                            type="checkbox"
+                            checked={task.completed}
+                            onChange={() => {
+                              task.completed = !task.completed;
+                              setTaskList({ ...taskList });
+                              localStorage.setItem(
+                                "notely-tasks",
+                                JSON.stringify(taskList)
+                              );
+                            }}
+                          />
+                        </div>
+                        <div className="task-name">{task.name}</div>
+                        <div className="task-actions">
+                          <a
+                            href="#"
+                            className="task-delete-button"
+                            onClick={() => {
+                              const updatedTasks = value.filter(
+                                (t) => t.id !== task.id
+                              );
+                              taskList[key] = updatedTasks;
+                              setTaskList({ ...taskList });
+                              localStorage.setItem(
+                                "notely-tasks",
+                                JSON.stringify(taskList)
+                              );
+                            }}
+                          >
+                            Delete
+                          </a>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
