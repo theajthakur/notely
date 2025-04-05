@@ -1,0 +1,46 @@
+.task-input {
+  display: inline-flex;
+  position: relative;
+  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.task-input input,
+.task-input button {
+  border-radius: 0;
+}
+
+.task-input button {
+  white-space: nowrap;
+}
+
+.task-item {
+  display: inline-flex;
+  width: 100%;
+  background: #3f7b893d;
+  margin: 2px 0;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ffffff21;
+}
+
+.task-list-items .task-actions {
+  margin-left: auto;
+  padding-right: 10px;
+}
+
+.task-list-items .task-name {
+  width: 100%;
+  padding-left: 10px;
+  text-transform: capitalize;
+}
+
+.task-list-items .task-actions a {
+  text-decoration: none;
+}
+
+.task-list-items .task-checkbox {
+  padding: 0 10px;
+}

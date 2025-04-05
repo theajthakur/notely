@@ -26,7 +26,7 @@ export default function Diary() {
         placeholder="Write your diary here..."
         onChange={saveDiaryEntry}
         defaultValue={
-          JSON.parse(localStorage.getItem("notely-diary"))[
+          JSON.parse(localStorage.getItem("notely-diary"))?.[
             new Date().toISOString().split("T")[0]
           ] || ""
         }
@@ -34,50 +34,55 @@ export default function Diary() {
         autoCorrect="off"
         spellCheck="false"
       ></textarea>
-      <div className="diary-history mt-5">
-        <h2 className="diary-history-title">Diary History</h2>
-        <ul className="diary-history-list">
-          {Object.entries(
-            JSON.parse(localStorage.getItem("notely-diary")) || {}
-          )
-            .reverse()
-            .map(([date, entry]) => (
-              <li key={date} className="diary-history-item mb-3">
-                <strong>{date}</strong>:{" "}
-                {entry.length > 200 ? entry.slice(0, 200) + "..." : entry}
-                <div className="diary-history-actions">
-                  {entry.length > 200 ? (
+      {Object.entries(JSON.parse(localStorage.getItem("notely-diary")) || {})
+        .length <= 0 ? (
+        ""
+      ) : (
+        <div className="diary-history mt-5">
+          <h2 className="diary-history-title">Diary History</h2>
+          <ul className="diary-history-list">
+            {Object.entries(
+              JSON.parse(localStorage.getItem("notely-diary")) || {}
+            )
+              .reverse()
+              .map(([date, entry]) => (
+                <li key={date} className="diary-history-item mb-3">
+                  <strong>{date}</strong>:{" "}
+                  {entry.length > 200 ? entry.slice(0, 200) + "..." : entry}
+                  <div className="diary-history-actions">
+                    {entry.length > 200 ? (
+                      <a
+                        href={`/notely/diary/${date}`}
+                        className="diary-history-link me-3"
+                      >
+                        View Full Entry
+                      </a>
+                    ) : (
+                      ""
+                    )}
                     <a
-                      href={`/notely/diary/${date}`}
-                      className="diary-history-link me-3"
+                      className="diary-history-delete"
+                      href="#"
+                      onClick={() => {
+                        const diaryData = JSON.parse(
+                          localStorage.getItem("notely-diary")
+                        );
+                        delete diaryData[date];
+                        localStorage.setItem(
+                          "notely-diary",
+                          JSON.stringify(diaryData)
+                        );
+                        window.location.reload();
+                      }}
                     >
-                      View Full Entry
+                      Delete Entry
                     </a>
-                  ) : (
-                    ""
-                  )}
-                  <a
-                    className="diary-history-delete"
-                    href="#"
-                    onClick={() => {
-                      const diaryData = JSON.parse(
-                        localStorage.getItem("notely-diary")
-                      );
-                      delete diaryData[date];
-                      localStorage.setItem(
-                        "notely-diary",
-                        JSON.stringify(diaryData)
-                      );
-                      window.location.reload();
-                    }}
-                  >
-                    Delete Entry
-                  </a>
-                </div>
-              </li>
-            ))}
-        </ul>
-      </div>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
