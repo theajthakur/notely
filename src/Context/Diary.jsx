@@ -1,6 +1,9 @@
 import React from "react";
-
+import "./styles/Diary.css";
+import Modal from "./Modal";
+import { useState } from "react";
 export default function Diary() {
+  const [isModalOpen, setModalOpen] = useState(false);
   function saveDiaryEntry(event) {
     const today = new Date().toISOString().split("T")[0];
     // Get the current date in YYYY-MM-DD format
@@ -38,51 +41,84 @@ export default function Diary() {
         .length <= 0 ? (
         ""
       ) : (
-        <div className="diary-history mt-5">
-          <h2 className="diary-history-title">Diary History</h2>
-          <ul className="diary-history-list">
-            {Object.entries(
-              JSON.parse(localStorage.getItem("notely-diary")) || {}
-            )
-              .reverse()
-              .map(([date, entry]) => (
-                <li key={date} className="diary-history-item mb-3">
-                  <strong>{date}</strong>:{" "}
-                  {entry.length > 200 ? entry.slice(0, 200) + "..." : entry}
-                  <div className="diary-history-actions">
-                    {entry.length > 200 ? (
-                      <a
-                        href={`/notely/diary/${date}`}
-                        className="diary-history-link me-3"
-                      >
-                        View Full Entry
-                      </a>
-                    ) : (
-                      ""
-                    )}
-                    <a
-                      className="diary-history-delete"
-                      href="#"
-                      onClick={() => {
-                        const diaryData = JSON.parse(
-                          localStorage.getItem("notely-diary")
-                        );
-                        delete diaryData[date];
-                        localStorage.setItem(
-                          "notely-diary",
-                          JSON.stringify(diaryData)
-                        );
-                        window.location.reload();
-                      }}
-                    >
-                      Delete Entry
-                    </a>
-                  </div>
-                </li>
-              ))}
-          </ul>
+        <div className="diary-history mt-5 card">
+          <div className="card-header">
+            <h2 className="diary-history-title">Diary History</h2>
+          </div>
+          <div className="card-body">
+            <div className="diary-history-list">
+              {Object.entries(
+                JSON.parse(localStorage.getItem("notely-diary")) || {}
+              )
+                .reverse()
+                .map(([date, entry]) => {
+                  const x = new Date(date);
+                  const dateFormatted = `${x.getDate()} ${x.toLocaleString(
+                    "default",
+                    { month: "long" }
+                  )}`;
+                  return (
+                    <div key={date} className="diary-history-item">
+                      <div className="inner-container">
+                        <div className="diary-history-date">
+                          {dateFormatted}
+                        </div>
+                        <div className="short-entry">
+                          {entry.length > 200
+                            ? entry.slice(0, 200) + "..."
+                            : entry}
+                        </div>
+                        <div className="diary-history-actions">
+                          {entry.length > 200 ? (
+                            <div className="diary-history-full-entry">
+                              <button
+                                onClick={() => setModalOpen(true)}
+                                className="diary-history-link btn btn-info mb-2"
+                              >
+                                <span className="bi bi-eye"></span>
+                              </button>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                          <div className="diary-history-delete">
+                            <a
+                              className="diary-history-delete btn btn-danger"
+                              href="#"
+                              onClick={() => {
+                                const diaryData = JSON.parse(
+                                  localStorage.getItem("notely-diary")
+                                );
+                                delete diaryData[date];
+                                localStorage.setItem(
+                                  "notely-diary",
+                                  JSON.stringify(diaryData)
+                                );
+                                window.location.reload();
+                              }}
+                            >
+                              <span className="bi bi-trash"></span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
         </div>
       )}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Diary Entry"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+        similique, quia tempore sapiente autem ipsam, labore sit ex doloremque
+        possimus quod cupiditate cum dolorem reprehenderit et itaque nobis!
+        Quia, omnis?
+      </Modal>
     </div>
   );
 }
