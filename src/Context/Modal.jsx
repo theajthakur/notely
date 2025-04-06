@@ -13,7 +13,7 @@ export default function Modal({ isOpen, onClose, title = "", children }) {
               ✕
             </button>
           </div>
-          {children}
+          <div className="modal-description">{children}</div>
         </div>
       </div>
     </div>
