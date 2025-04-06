@@ -4,18 +4,19 @@ import Modal from "./Modal";
 import { useState } from "react";
 export default function Diary() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedDiary, setSelectedDiary] = useState("");
   function saveDiaryEntry(event) {
     const today = new Date().toISOString().split("T")[0];
-    // Get the current date in YYYY-MM-DD format
-
     const diaryData = JSON.parse(localStorage.getItem("notely-diary")) || {};
-
     diaryData[today] = event.target.value;
-    // Save the updated diary data to localStorage
-
     localStorage.setItem("notely-diary", JSON.stringify(diaryData));
   }
 
+  function openDiaryEntry(date) {
+    const diaryData = JSON.parse(localStorage.getItem("notely-diary")) || {};
+    setSelectedDiary(diaryData[date]);
+    setModalOpen(true);
+  }
   return (
     <div className="diary-section">
       <h1 className="diary-title">Diary</h1>
@@ -72,7 +73,7 @@ export default function Diary() {
                           {entry.length > 200 ? (
                             <div className="diary-history-full-entry">
                               <button
-                                onClick={() => setModalOpen(true)}
+                                onClick={() => openDiaryEntry(date)}
                                 className="diary-history-link btn btn-info mb-2"
                               >
                                 <span className="bi bi-eye"></span>
@@ -114,10 +115,7 @@ export default function Diary() {
         onClose={() => setModalOpen(false)}
         title="Diary Entry"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-        similique, quia tempore sapiente autem ipsam, labore sit ex doloremque
-        possimus quod cupiditate cum dolorem reprehenderit et itaque nobis!
-        Quia, omnis?
+        {selectedDiary}
       </Modal>
     </div>
   );
