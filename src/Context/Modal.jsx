@@ -7,10 +7,10 @@ export default function Modal({ isOpen, onClose, title = "", children }) {
   if (!isOpen) return null;
   return (
     <div className="myModal">
-      <div className="row justify-content-center">
+      <div className="row justify-content-center w-100">
         <div
           className={`${
-            mode == "dark" ? "bg-dark text-white" : "bg-white"
+            mode == "night" ? "bg-dark text-white" : "bg-white"
           } col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 rounded-lg shadow-lg p-4`}
         >
           <div className="modal-header w-100 pb-2 mb-2 border-bottom">

@@ -49,3 +49,12 @@
   rotate: 45deg;
   top: 2px;
 }
+
+.app.dark-mode .diary-history-date {
+  background: #00dcff;
+  color: #000;
+}
+
+.app.dark-mode .diary-history-date:before {
+  background: #00dcff;
+}

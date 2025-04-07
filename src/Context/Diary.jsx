@@ -48,13 +48,9 @@ export default function Diary() {
       ) : (
         <div className="diary-history mt-5 card">
           <div className="card-header">
-            <h2 className="diary-history-title">Diary History</h2>
+            <h2 className="diary-history-title m-0">Diary History</h2>
           </div>
-          <div
-            className={`card-body ${
-              mode === "night" ? "bg-dark text-light" : ""
-            }`}
-          >
+          <div className="card-body">
             <div className="diary-history-list">
               {Object.entries(
                 JSON.parse(localStorage.getItem("notely-diary")) || {}
