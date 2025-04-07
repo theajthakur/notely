@@ -4,7 +4,7 @@ const ModeContext = createContext();
 
 export const ModeProvider = ({ children }) => {
   const currentMode = localStorage.getItem("web_light_mode");
-  const [mode, setMode] = useState(currentMode === "light" ? "light" : "dark");
+  const [mode, setMode] = useState(currentMode === "light" ? "light" : "night");
   const toggleMode = () => {
     setMode((prevMode) => (prevMode === "light" ? "night" : "light"));
   };

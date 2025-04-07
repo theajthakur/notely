@@ -2,7 +2,9 @@ import React from "react";
 import "./styles/Diary.css";
 import Modal from "./Modal";
 import { useState } from "react";
+import { useMode } from "./ModeContext";
 export default function Diary() {
+  const { mode } = useMode();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedDiary, setSelectedDiary] = useState("");
   function saveDiaryEntry(event) {
@@ -26,7 +28,9 @@ export default function Diary() {
       </p>
       <textarea
         rows="8"
-        className="diary-input form-control"
+        className={`diary-input form-control ${
+          mode === "night" ? "bg-dark text-light" : ""
+        }`}
         placeholder="Write your diary here..."
         onChange={saveDiaryEntry}
         defaultValue={
@@ -46,7 +50,11 @@ export default function Diary() {
           <div className="card-header">
             <h2 className="diary-history-title">Diary History</h2>
           </div>
-          <div className="card-body">
+          <div
+            className={`card-body ${
+              mode === "night" ? "bg-dark text-light" : ""
+            }`}
+          >
             <div className="diary-history-list">
               {Object.entries(
                 JSON.parse(localStorage.getItem("notely-diary")) || {}
