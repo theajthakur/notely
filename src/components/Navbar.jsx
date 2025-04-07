@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useMode } from "../Context/ModeContext";
 import Modal from "../Context/Modal";
+import SwalAlert from "../utils/SwalAlert";
+
 export default function Navbar() {
   const { mode, toggleMode } = useMode();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -21,6 +23,17 @@ export default function Navbar() {
     a.click();
 
     URL.revokeObjectURL(url);
+    SwalAlert({
+      title: "Backup Exported",
+      text: "Your diaries and tasks were exported.",
+      icon: "success",
+      showCancelButton: false,
+      showConfirmButton: true,
+      confirmButtonText: "OK",
+    });
+    setModalOpen(false);
+    console.log("Backup exported successfully.");
+    setModalOpen(false);
   }
 
   function importBackup(file) {
@@ -32,9 +45,26 @@ export default function Navbar() {
           localStorage.setItem("notely-diary", JSON.stringify(data.diary));
         if (data.tasks)
           localStorage.setItem("notely-tasks", JSON.stringify(data.tasks));
-        alert("Backup restored successfully!");
+        SwalAlert({
+          title: "Backup Imported",
+          text: "Your diaries and tasks were imported.",
+          icon: "success",
+          showCancelButton: false,
+          showConfirmButton: true,
+          confirmButtonText: "OK",
+        });
+        setModalOpen(false);
       } catch (err) {
-        alert("Invalid backup file");
+        SwalAlert({
+          title: "Backup Cannot be Imported",
+          text: "Please check the file format.",
+          icon: "error",
+          showCancelButton: false,
+          showConfirmButton: true,
+          confirmButtonText: "OK",
+        });
+        console.error("Error importing backup:", err);
+        setModalOpen(false);
       }
     };
     reader.readAsText(file);
