@@ -30,7 +30,7 @@ export default function App() {
   if (passwordSettings?.password && passwordSettings?.password !== "") {
     const passDate = new Date(passwordSettings?.date) || 0;
     const hasExpired =
-      passDate && passDate.getTime() < new Date().getTime() - 86400000;
+      passDate && passDate.getTime() < new Date().getTime() - 60;
     if (!passDate || passDate == "Invalid Date" || hasExpired) {
       console.log("Inserte");
       return <Unlock />;
