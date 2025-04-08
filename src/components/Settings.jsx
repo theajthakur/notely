@@ -1,10 +1,37 @@
 import SwalAlert from "../utils/SwalAlert";
 import React, { useState } from "react";
+import bcrypt from "bcryptjs";
 import "../Context/styles/Settings.css";
+
 export default function Settings() {
+  const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   function passwordToggle() {
     setPasswordShown(!passwordShown);
+  }
+  async function hashText(text) {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(text, salt);
+    return hash;
+  }
+  async function verifyText(text, hash) {
+    const isMatch = await bcrypt.compare(text, hash);
+    return isMatch;
+  }
+  async function handlePasswordSet() {
+    if (!password || password.length < 6 || password.length > 12) {
+      SwalAlert({
+        title: "Password Cannot be Set",
+        text: "Password should be made up of combination of minimum 6 letters or digits & maximum 12 letters or digits.",
+        icon: "error",
+        showCancelButton: false,
+        showConfirmButton: true,
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+    const hashedPass = await hashText(password);
+    localStorage.setItem("notely-password", hashedPass);
   }
   function exportBackup() {
     const diary = JSON.parse(localStorage.getItem("notely-diary") || "{}");
@@ -107,13 +134,15 @@ export default function Settings() {
               className="w-100 px-2"
               type={passwordShown ? "text" : "password"}
               placeholder="Enter Password"
+              value={password}
+              onInput={(event) => setPassword(event.target.value)}
             />
             <button onClick={passwordToggle} className="pe-3 bg-transparent">
               <span
                 className={passwordShown ? "bi bi-eye-slash" : "bi bi-eye"}
               ></span>
             </button>
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" onClick={handlePasswordSet}>
               <span className="bi bi-lock"></span>
             </button>
           </div>
