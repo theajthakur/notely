@@ -85,11 +85,7 @@ export default function Navbar() {
   return (
     <>
       <div className="my-navbar">
-        <nav
-          className={`navbar navbar-expand ${
-            mode === "light" ? "navbar-light bg-light" : "navbar-dark bg-dark"
-          }`}
-        >
+        <nav className={`navbar navbar-expand`}>
           <div className="container">
             <a
               className="navbar-brand"
