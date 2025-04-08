@@ -2,11 +2,9 @@ import React from "react";
 import "./styles/Diary.css";
 import Modal from "./Modal";
 import { useState } from "react";
-import { useMode } from "./ModeContext";
 import SwalAlert from "../utils/SwalAlert";
 
 export default function Diary() {
-  const { mode } = useMode();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedDiary, setSelectedDiary] = useState("");
   const [diaryData, setDiaryData] = useState(
@@ -57,9 +55,7 @@ export default function Diary() {
       <textarea
         id="diary-input"
         rows="8"
-        className={`diary-input form-control ${
-          mode === "night" ? "bg-dark text-light" : ""
-        }`}
+        className={`diary-input form-control`}
         placeholder="Write your diary here..."
         onChange={saveDiaryEntry}
         defaultValue={

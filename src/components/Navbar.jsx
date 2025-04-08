@@ -111,7 +111,7 @@ export default function Navbar() {
                     <span
                       className={mode === "light" ? "bi bi-moon" : "bi bi-sun"}
                     ></span>
-                    {mode === "light" ? " Dark" : " Light"}
+                    {mode === "light" ? " Night" : " Light"}
                   </a>
                 </li>
                 <li className="nav-item">

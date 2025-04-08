@@ -8,11 +8,19 @@ export default function TaskList() {
     JSON.parse(localStorage.getItem("notely-tasks")) || {}
   );
   function addTaskToDate(today) {
-    const taskData = JSON.parse(localStorage.getItem("notely-tasks")) || {};
+    if (!task) return;
+    let taskData = JSON.parse(localStorage.getItem("notely-tasks")) || {};
+    if (Array.isArray(taskData)) {
+      taskData = {};
+    }
+    taskData = Object.fromEntries(
+      Object.entries(taskData).filter((y) => y[1].length > 0)
+    );
+    if (!taskData || taskData.length == 0) taskData = {};
     if (!taskData[today]) taskData[today] = [];
 
     taskData[today].push({
-      id: taskData[today].length + 1,
+      id: taskData[today].length ? taskData[today].length + 1 : 1,
       name: task,
       completed: false,
     });
@@ -92,6 +100,9 @@ export default function TaskList() {
                                 (t) => t.id !== task.id
                               );
                               taskList[key] = updatedTasks;
+                              if (updatedTasks.length === 0) {
+                                delete taskList[key];
+                              }
                               setTaskList({ ...taskList });
                               localStorage.setItem(
                                 "notely-tasks",
@@ -99,7 +110,7 @@ export default function TaskList() {
                               );
                             }}
                           >
-                            Delete
+                            <span className="bi bi-trash"></span>
                           </a>
                         </div>
                       </div>

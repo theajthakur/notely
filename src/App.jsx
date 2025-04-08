@@ -17,9 +17,7 @@ export default function App() {
       <Route
         path="/notely"
         element={
-          <div
-            className={`app ${mode === "light" ? "light-mode" : "dark-mode"}`}
-          >
+          <div className={`app`}>
             <Navbar />
             <div className="container mt-5">
               <div className="row">
