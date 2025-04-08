@@ -1,0 +1,12 @@
+.password-input input,
+.password-input button {
+  outline: none;
+  border-radius: unset;
+  border: 0;
+}
+
+.password-input {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #0d6efd;
+}
