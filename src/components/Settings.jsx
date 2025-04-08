@@ -2,6 +2,7 @@ import SwalAlert from "../utils/SwalAlert";
 import React, { useState } from "react";
 import bcrypt from "bcryptjs";
 import "../Context/styles/Settings.css";
+import Swal from "sweetalert2";
 
 export default function Settings() {
   const [password, setPassword] = useState("");
@@ -30,8 +31,20 @@ export default function Settings() {
       });
       return;
     }
-    const hashedPass = await hashText(password);
-    localStorage.setItem("notely-password", hashedPass);
+    try {
+      const hashedPass = await hashText(password);
+      localStorage.setItem("notely-password", hashedPass);
+      SwalAlert({
+        title: "Password Set",
+        text: "Your password was set successfully.",
+        icon: "success",
+        showCancelButton: false,
+        showConfirmButton: true,
+        confirmButtonText: "OK",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
   function exportBackup() {
     const diary = JSON.parse(localStorage.getItem("notely-diary") || "{}");
