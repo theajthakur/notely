@@ -9,9 +9,34 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css";
 import Diary from "./Context/Diary";
 import TaskList from "./Context/TaskList";
+import SwalAlert from "./utils/SwalAlert";
+import Unlock from "./components/Unlock";
 
 export default function App() {
   const { mode } = useMode();
+  const passwordSettings = JSON.parse(
+    localStorage.getItem("notely-password") || "{}"
+  );
+  if (!passwordSettings?.password) {
+    SwalAlert({
+      title: "Password Not Set",
+      text: "Please set a password to ensure your diary is secure.",
+      icon: "warning",
+      showCancelButton: false,
+      showConfirmButton: true,
+      confirmButtonText: "OK",
+    });
+  }
+  if (passwordSettings?.password && passwordSettings?.password !== "") {
+    const passDate = new Date(passwordSettings?.date) || 0;
+    const hasExpired =
+      passDate && passDate.getTime() < new Date().getTime() - 86400000;
+    if (!passDate || passDate == "Invalid Date" || hasExpired) {
+      console.log("Inserte");
+      return <Unlock />;
+    }
+  }
+
   return (
     <Routes>
       <Route

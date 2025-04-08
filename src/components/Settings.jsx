@@ -15,10 +15,6 @@ export default function Settings() {
     const hash = await bcrypt.hash(text, salt);
     return hash;
   }
-  async function verifyText(text, hash) {
-    const isMatch = await bcrypt.compare(text, hash);
-    return isMatch;
-  }
   async function handlePasswordSet() {
     if (!password || password.length < 6 || password.length > 12) {
       SwalAlert({
@@ -33,7 +29,17 @@ export default function Settings() {
     }
     try {
       const hashedPass = await hashText(password);
-      localStorage.setItem("notely-password", hashedPass);
+      let savedPassOptions;
+      try {
+        JSON.parse(localStorage.getItem("notely-password"));
+      } catch (error) {
+        savedPassOptions = {};
+      }
+      if (!savedPassOptions?.password) {
+        savedPassOptions = {};
+      }
+      savedPassOptions.password = hashedPass;
+      localStorage.setItem("notely-password", JSON.stringify(savedPassOptions));
       SwalAlert({
         title: "Password Set",
         text: "Your password was set successfully.",
