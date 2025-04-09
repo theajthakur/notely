@@ -156,7 +156,7 @@ export default function Settings() {
               value={password}
               onInput={(event) => setPassword(event.target.value)}
             />
-            <button onClick={passwordToggle} className="pe-3 bg-transparent">
+            <button onClick={passwordToggle} className="px-3 bg-transparent">
               <span
                 className={passwordShown ? "bi bi-eye-slash" : "bi bi-eye"}
               ></span>
