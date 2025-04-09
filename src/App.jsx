@@ -11,6 +11,7 @@ import SwalAlert from "./utils/SwalAlert";
 import Unlock from "./components/Unlock";
 import Home from "./components/Home";
 import PrivacyPolicy from "./components/Privacy";
+import Terms from "./components/Terms";
 
 export default function App() {
   const { mode } = useMode();
@@ -43,6 +44,7 @@ export default function App() {
         <Routes>
           <Route path="/notely" element={<Home />} />
           <Route path="/notely/privacy" element={<PrivacyPolicy />} />
+          <Route path="/notely/terms-conditions" element={<Terms />} />
         </Routes>
       </div>
     </>
