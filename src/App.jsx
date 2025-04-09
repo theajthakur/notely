@@ -7,10 +7,10 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css";
-import Diary from "./Context/Diary";
-import TaskList from "./Context/TaskList";
 import SwalAlert from "./utils/SwalAlert";
 import Unlock from "./components/Unlock";
+import Home from "./components/Home";
+import PrivacyPolicy from "./components/Privacy";
 
 export default function App() {
   const { mode } = useMode();
@@ -37,25 +37,14 @@ export default function App() {
   }
 
   return (
-    <Routes>
-      <Route
-        path="/notely"
-        element={
-          <div className={`app`}>
-            <Navbar />
-            <div className="container mt-5">
-              <div className="row">
-                <div className="col-md-8 my-3">
-                  <Diary />
-                </div>
-                <div className="col-md-4 my-3">
-                  <TaskList />
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-      />
-    </Routes>
+    <>
+      <div className={`app`}>
+        <Navbar />
+        <Routes>
+          <Route path="/notely" element={<Home />} />
+          <Route path="/notely/privacy" element={<PrivacyPolicy />} />
+        </Routes>
+      </div>
+    </>
   );
 }
