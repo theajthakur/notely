@@ -30,11 +30,11 @@ export default function Unlock() {
     }
   };
   return (
-    <div className="app bg-dark">
+    <div className="app">
       <div className="container mt-5">
         <div className="vh-100 d-flex justify-content-center align-items-center">
           <div className="col-sm-8 col-md-6 col-lg-5 col-xl-4 card">
-            <div className="inner bg-white shadow-sm p-4 rounded">
+            <div className="inner card shadow-sm p-4 rounded">
               <h3 className="text-center mb-4">
                 <span className="bi bi-key"></span>
               </h3>
