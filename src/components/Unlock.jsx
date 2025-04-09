@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SwalAlert from "../utils/SwalAlert";
 import bcrypt from "bcryptjs";
-
+document.documentElement.setAttribute("data-bs-theme", "light");
 export default function Unlock() {
   const [password, setPassword] = useState("");
   async function verifyText(text, hash) {
@@ -33,7 +33,7 @@ export default function Unlock() {
     <div className="app bg-dark">
       <div className="container mt-5">
         <div className="vh-100 d-flex justify-content-center align-items-center">
-          <div className="col-sm-8 col-md-6 col-lg-5 col-xl-4">
+          <div className="col-sm-8 col-md-6 col-lg-5 col-xl-4 card">
             <div className="inner bg-white shadow-sm p-4 rounded">
               <h3 className="text-center mb-4">
                 <span className="bi bi-key"></span>
