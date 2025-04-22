@@ -17,10 +17,10 @@ export default function Home() {
       </div>
       <div className="w-100 p-3 text-center mt-5 pt-5 border-top">
         <p className="m-0">
-          <Link to={"/notely/privacy"} className="me-3">
+          <Link to={"/privacy"} className="me-3">
             Privacy Policy
           </Link>
-          <Link to={"/notely/terms-conditions"}>Terms & Conditions</Link>
+          <Link to={"/terms-conditions"}>Terms & Conditions</Link>
         </p>
       </div>
     </>
