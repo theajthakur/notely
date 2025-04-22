@@ -42,9 +42,9 @@ export default function App() {
       <div className={`app`}>
         <Navbar />
         <Routes>
-          <Route path="/notely" element={<Home />} />
-          <Route path="/notely/privacy" element={<PrivacyPolicy />} />
-          <Route path="/notely/terms-conditions" element={<Terms />} />
+          <Route path="" element={<Home />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<Terms />} />
         </Routes>
       </div>
     </>
