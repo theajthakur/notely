@@ -58,3 +58,7 @@
 .app.dark-mode .diary-history-date:before {
   background: #00dcff;
 }
+
+.diary-entry-modal {
+  white-space: pre-line;
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import "./styles/Diary.css";
 import Modal from "./Modal";
 import { useState } from "react";
@@ -127,7 +126,7 @@ export default function Diary() {
         onClose={() => setModalOpen(false)}
         title="Diary Entry"
       >
-        {selectedDiary}
+        <div className="diary-entry-modal">{selectedDiary}</div>
       </Modal>
     </div>
   );
