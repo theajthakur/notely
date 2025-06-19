@@ -39,7 +39,7 @@ export default function App() {
 
   return (
     <>
-      <div className={`app`}>
+      <div className={`app ${mode}`}>
         <Navbar />
         <Routes>
           <Route path="" element={<Home />} />
