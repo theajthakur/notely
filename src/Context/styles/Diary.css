@@ -50,15 +50,15 @@
   top: 2px;
 }
 
-.app.dark-mode .diary-history-date {
-  background: #00dcff;
+.diary-entry-modal {
+  white-space: pre-line;
+}
+
+.app.dark .diary-history-date {
+  background: #ffad4f;
   color: #000;
 }
 
-.app.dark-mode .diary-history-date:before {
-  background: #00dcff;
-}
-
-.diary-entry-modal {
-  white-space: pre-line;
+.app.dark .diary-history-date:before {
+  background: #ffad4f;
 }
