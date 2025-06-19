@@ -12,6 +12,7 @@ body {
   color: #333; /* Adjust text color */
   overflow-x: hidden;
   min-height: 100vh;
+  background: url(/images/wallpaper.jpg) center center fixed;
 }
 
 /* Headings */
@@ -38,9 +39,10 @@ pre {
   min-height: 100vh;
   transition: 0.2s;
   overflow-x: hidden;
+  backdrop-filter: blur(5px);
+  background: #00000091;
 }
 
-.app.dark-mode {
-  background: #272727;
-  color: #e9e4dc;
+.app.dark {
+  background: #ffffffc1;
 }

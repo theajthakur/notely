@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     <div className="container my-5">
       <div className="myHeader d-inline-flex w-100 mb-5 border-bottom pb-5">
         <div className="backkBtn">
-          <Link to={"/notely/"} className="btn btn-primary">
+          <Link to={"/"} className="btn btn-primary">
             <span className="bi bi-arrow-left"></span>
           </Link>
         </div>
